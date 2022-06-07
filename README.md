@@ -13,7 +13,7 @@
 
 
 ## Lab 37 : branch name : combined-reducers
->  Added the ability to add and remove from Cart
+>  Added the ability to add and remove from Cart using combined reducers 
 
 
 **user Stories**

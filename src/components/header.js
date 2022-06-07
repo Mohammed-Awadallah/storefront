@@ -1,55 +1,66 @@
+
 import React from "react";
-import { createStyles, makeStyles } from "@material-ui/core/styles";
+import { connect } from 'react-redux'
+import { makeStyles } from "@material-ui/core/styles";
 import AppBar from "@material-ui/core/AppBar";
 import Toolbar from "@material-ui/core/Toolbar";
 import Typography from "@material-ui/core/Typography";
-import Button from "@material-ui/core/Button";
 import IconButton from "@material-ui/core/IconButton";
-import MenuIcon from "@material-ui/icons/Menu";
+import ShoppingCartIcon from '@material-ui/icons/ShoppingCart';
+// import { Link } from "react-router-dom";
 
 
-const useStyles = makeStyles((theme) =>
-  createStyles({
-    root: {
-      flexGrow: 1
-    },
-    menuButton: {
-      marginRight: theme.spacing(2)
-    },
-    title: {
-      flexGrow: 1,
-      textAlign: "center"
-    },
-    logo: {
-      maxWidth: 40,
-      marginRight: '10px'
-    }
-  })
-);
+const useStyles = makeStyles((theme) => ({
+  root: {
+    flexGrow: 1
+  },
+  menuButton: {
+    marginRight: theme.spacing(2)
+  },
+  title: {
+    flexGrow: 1
+  }
+}));
 
-export default function Header() {
+
+
+
+const Header = (props) => {
   const classes = useStyles();
+
+
+
 
   return (
     <div className={classes.root}>
-      <AppBar position="static">
+      <AppBar position="static" color="default">
         <Toolbar>
-          <IconButton
-            edge="start"
-            className={classes.menuButton}
-            color="inherit"
-            aria-label="menu"
-          >
-            <MenuIcon />
-          </IconButton>
-         
-          <Typography variant="h6" className={classes.title}>
-            our Store
+
+
+          <Typography variant="h6" className={classes.title} >
+           
+            StoreFront
           </Typography>
 
-          <Button color="inherit">Login</Button>
+          <div>
+
+            <IconButton aria-label="cart">
+
+               <ShoppingCartIcon /> {props.cart.count} 
+
+            </IconButton>
+
+          </div>
+
+
         </Toolbar>
       </AppBar>
     </div>
   );
 }
+
+const mapStateToProps = state => ({
+  cart: state.cart
+})
+
+export default connect(mapStateToProps)(Header); 

@@ -1,7 +1,7 @@
 import React from 'react';
 import {connect} from 'react-redux'
-import { change} from '../../store/';
-
+import { addCart } from '../../store/cart';
+import {decrementInventory } from '../../store/products';
 import Button from '@material-ui/core/Button';
 import Card from '@material-ui/core/Card';
 import CardActions from '@material-ui/core/CardActions';
@@ -11,7 +11,7 @@ import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
-import MonetizationOnOutlinedIcon from '@material-ui/icons/MonetizationOnOutlined';
+
 
 const useStyles = makeStyles((theme) => ({
   cardGrid: {
@@ -40,6 +40,15 @@ const useStyles = makeStyles((theme) => ({
 const Products = props => {
   const classes = useStyles();
 
+  function handleAddCart(product) {
+    if (product.inventory > 0) {
+      props.addCart(product)
+      props.decrementInventory(product)
+  }
+    else {
+      alert('Out of stock')
+    }
+}
   return (
     <Container className={classes.cardGrid} maxWidth="md">
       {/* End hero unit */}
@@ -54,18 +63,18 @@ const Products = props => {
               />
               <CardContent className={classes.cardContent}>
                 <Typography gutterBottom variant="h5" component="h2" className={classes.cardTitle}>
-                  {card.name}<span>{card.price}<MonetizationOnOutlinedIcon/></span>
+                  {card.name}<span>{card.price}</span>
                 </Typography>
                 <Typography>
                   {card.description}
                 </Typography>
               </CardContent>
               <CardActions>
-                <Button size="small" color="primary" onClick={()=> props.change(card)}>
-                  ADD TO CART
+                <Button size="small" color="primary" onClick={()=>handleAddCart(card)}>
+                  add to cart
                 </Button>
                 <Button size="small" color="primary">
-                  VIEW DETAILS
+                  details
                 </Button>
                 {card.inventory}
               </CardActions>
@@ -81,7 +90,7 @@ const mapStateToProps = state => ({
   products: state.products
 })
 
-const mapDispatchToProps = { change };
+const mapDispatchToProps = { addCart , decrementInventory };
 
 
 export default connect(mapStateToProps, mapDispatchToProps)(Products);

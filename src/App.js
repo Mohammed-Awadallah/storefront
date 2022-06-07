@@ -2,8 +2,9 @@ import React from 'react';
 import './App.scss';
 import Header from './components/header'; 
 import Footer from './components/footer'; 
-import Categories from './components/storefront/categories';
-import Products from './components/storefront/products';
+import StoreFront from './components/storefront/storefront';
+// import Cart from './components/cart/cart';
+// import { Routes, Route } from "react-router-dom";
 
 
  // eslint-disable-next-line
@@ -12,8 +13,11 @@ export default(props) => {
   return (
     <>
       <Header/>
-      <Categories />
-      <Products />
+      <StoreFront/>
+     {/* <Routes>
+        {/* <Route path="/" element={<StoreFront />} /> */}
+        {/* <Route path="/cart" element={<Cart />} />
+     </Routes> */} 
       <Footer/>
     </>
   );

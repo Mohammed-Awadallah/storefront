@@ -5,14 +5,17 @@ import Typography from '@material-ui/core/Typography';
  
 const styles = theme => ({
   root: {
-    ...theme.mixins.gutters(),
-    paddingTop: theme.spacing.unit * 2,
-    paddingBottom: theme.spacing.unit * 2,
+    paddingLeft: theme.spacing(2),
+    paddingRight: theme.spacing(2),
+    [theme.breakpoints.up('sm')]: {
+      paddingLeft: theme.spacing(3),
+      paddingRight: theme.spacing(3),
+    },
   },
   footer: {
     backgroundColor: theme.palette.background.zeta,
-    marginTop: theme.spacing.unit * 8,
-    padding: `${theme.spacing.unit * 6}px 0`,
+    marginTop: theme.spacing(8),
+    padding: `${theme.spacing(6)}px 0`,
   }
 });
  
