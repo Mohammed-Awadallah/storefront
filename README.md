@@ -1,6 +1,9 @@
 # Storefront 
 
-## Lab 36 : finished and did the stretch goal
+## Lab 36 :  branch name : Redux finished and did the stretch goal
+* [Pull Request](https://github.com/Mohammed-Awadallah/storefront/pull/1)
+* [netlify] (https://app.netlify.com/sites/eloquent-raindrop-d99873/deploys/629e972d3eb5950008a0841b)
+
 > in this lab we begin the 4 phase process of creating a storefront app written in react using redux and material ui for styling 
 
 **user stories**
@@ -9,12 +12,15 @@
 * As a user, I want a clean, easy to use user interface so that I can shop the online store with confidence
 
 
-## Lab 37
-> 
+## Lab 37 : branch name : combined-reducers
+>  Added the ability to add and remove from Cart
 
 
 **user Stories**
-
+* As a user, I want to choose from products in the list and add them to my shopping cart
+* As a user, I want to see the products that I’ve added to my shopping cart so that
+* As a user, I want to change the quantity of items I intend to purchase in my shopping cart
+* As a user, I want to be able to remove an item from my shopping cart
 
 ## Lab 38
 

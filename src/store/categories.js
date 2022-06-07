@@ -9,6 +9,7 @@ const initialState = {
   }
   
   
+
   // eslint-disable-next-line
   export default (state = initialState, action) => {
     const {type, payload} = action;
@@ -20,4 +21,6 @@ const initialState = {
       default:
         return state;
     }
+
   }
+}
