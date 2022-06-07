@@ -9,23 +9,55 @@ const initialState = {
   }
   
   
-  // eslint-disable-next-line
-  export default (state = initialState, action) => {
-  
-    const {type, payload} = action;
-  
-    switch(type) {
-  
-      case 'Change':
-        let displayedProducts = filterProducts(state.allProducts, payload);
-        return {...state, displayedProducts};
-  
-      default:
-        return state;
-  
-    }
-  } 
-  
-  const filterProducts = (products, choice) => {
-    return products.filter(product => product.category === choice);
+  // Reducer
+export default (state = initialState, action) => {
+
+  const {type, payload, product} = action;
+  let changedProduct;
+  console.log(payload);
+  console.log("products ----------> :", state);
+
+  switch(type) {
+    case 'ChangeCat':
+      let displayedProducts = filterProductsCat(state.allProducts, payload);
+      return {...state, displayedProducts};
+
+    case 'AddCart':
+        if (product.inventory > 0) {
+          let allProducts = incrementDecrement(state.allProducts, product.name, true);
+        return {...state, allProducts};
+        }
+        return {...state}
+
+    case 'RemoveCart':
+      if (product.cart > 0) {
+        let allProducts = incrementDecrement(state.allProducts, product.name, false);
+        return {...state, allProducts};
+      }
+
+    default:
+      return state;
   }
+} 
+
+const filterProductsCat = (products, choice) => {
+  return products.filter(product => product.category === choice);
+}
+
+const incrementDecrement = (products, name, boolean) => {
+  return products.map((product) => {
+    if (product.name === name) {
+      if (boolean) {
+        product.inventory--;
+        product.cart++;
+        return product;
+      } else {
+        product.inventory++;
+        product.cart--;
+        return product;
+      } 
+    } else {
+      return product;
+    };
+  });
+}
