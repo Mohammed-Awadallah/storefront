@@ -9,7 +9,7 @@ const initialState = {
   }
   
   
-  // Reducer
+  // eslint-disable-next-line
   export default (state = initialState, action) => {
   
     const {type, payload} = action;
