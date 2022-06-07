@@ -9,17 +9,18 @@ const initialState = {
   }
   
   
- 
-// Reducer
-export default (state = initialState, action) => {
-  const {type, payload} = action;
-  console.log("categories ----------> :", state);
-  switch(type) {
-    case 'ChangeCat':
-      console.log(payload, state.allCategories[payload]);
-      return {...state, activeCategory: state.allCategories[payload]};
 
-    default:
-      return state;
+  // eslint-disable-next-line
+  export default (state = initialState, action) => {
+    const {type, payload} = action;
+    switch(type) {
+      case 'Change':
+        console.log(payload, state.allCategories[payload]);
+        return {...state, activeCategory: state.allCategories[payload]};
+  
+      default:
+        return state;
+    }
+
   }
 }
