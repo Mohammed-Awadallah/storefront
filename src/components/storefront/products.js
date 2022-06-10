@@ -1,7 +1,7 @@
 import React from 'react';
 import {connect} from 'react-redux'
 import { addCart } from '../../store/cart';
-import {decrementInventory } from '../../store/products';
+// import {decrementInventory } from '../../store/products';
 import Button from '@material-ui/core/Button';
 import Card from '@material-ui/core/Card';
 import CardActions from '@material-ui/core/CardActions';
@@ -11,6 +11,8 @@ import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
+import { useEffect } from 'react';
+import { getRemoteData } from '../../store';
 
 
 const useStyles = makeStyles((theme) => ({
@@ -39,6 +41,9 @@ const useStyles = makeStyles((theme) => ({
 
 const Products = props => {
   const classes = useStyles();
+  // useEffect((props) => {
+  //   props.get();
+  // }, [])
 
   function handleAddCart(product) {
     if (product.inventory > 0) {
@@ -90,7 +95,10 @@ const mapStateToProps = state => ({
   products: state.products
 })
 
-const mapDispatchToProps = { addCart , decrementInventory };
+const mapDispatchToProps = (dispatch, getState) => ({ 
+  get: ()=> dispatch(getRemoteData('products')),
+  addCart: (input)=> dispatch(addCart(input)),
+});
 
 
 export default connect(mapStateToProps, mapDispatchToProps)(Products);

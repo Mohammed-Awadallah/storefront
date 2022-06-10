@@ -14,12 +14,16 @@ const initialState = {
   export default (state = initialState, action) => {
     const {type, payload} = action;
     switch(type) {
+      case 'GET.C': 
+      return {...state, allCategories: payload.results};
+  
       case 'ChangeCat':
-
-        return {...state, activeCategory: state.allCategories[payload]};
+        console.log("changing caat:       ....",payload, state.allCategories[payload]);
+        return {...state, activeCategory: state.allCategories[payload[1]]};
   
       default:
         return state;
     }
   }
+  
   

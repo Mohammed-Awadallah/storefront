@@ -16,8 +16,12 @@ const initialState = {
    
     switch(type) {
       case 'ChangeCat':
-        let displayedProducts = filterProductsCat(state.allProducts, payload);
+        let displayedProducts = filterProductsCat(state.allProducts, payload[0]);
         return {...state, displayedProducts};
+
+        case 'GET.P':
+      return {...state, allProducts: payload.results};
+      
         case 'INCREMENT_INVENTORY':
         let item = state.allProducts.find(product => product.name === payload.name);
         item.inventory++;

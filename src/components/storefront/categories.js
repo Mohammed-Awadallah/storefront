@@ -1,10 +1,12 @@
 import React from 'react'
 import {connect} from 'react-redux'
-import { change, removeCart } from '../../store/';
+import { change, removeCart , getRemoteData } from '../../store/';
 import ActiveCategory from './current-category';
 import SimpleCart from '../cart/simplecart';
 import { makeStyles } from "@material-ui/core/styles";
 import Link from '@material-ui/core/Link';
+import { useEffect } from 'react'
+
 
 
 const useStyles = makeStyles((theme) => ({
@@ -24,12 +26,15 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 
-const Categories = props => {
+const Categories = (props) => {
   const classes = useStyles();
+  // useEffect(() => {
+  //   props.get();
+  // }, [])
 
   return (
     <section className={classes.categoryContainer}>
-      {console.log('Props:', props)}
+     
       <div className={classes.title}>Browse our Categories</div>
       <div className={classes.allCategories}>
         {Object.keys(props.category.allCategories).map(function(key, index) {
@@ -61,6 +66,11 @@ const mapStateToProps = state => ({
   cart: state.cart
 })
 
-const mapDispatchToProps = { change, removeCart };
+
+const mapDispatchToProps = (dispatch, getState) => ({ 
+  get: ()=> dispatch(getRemoteData('categories')),
+  change: (input)=> dispatch(change(input)),
+  removeCart: (input)=> dispatch(removeCart(input)),
+});
 
 export default connect(mapStateToProps, mapDispatchToProps)(Categories); 
